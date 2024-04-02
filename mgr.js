@@ -16,15 +16,15 @@ define(['managerAPI',
 
     //Randomly select which of two sets of category labels to use.
     let raceSet = API.shuffle(['a','b'])[0];
-    let blackLabels = [];
+    let femaleLabels = [];
     let whiteLabels = [];
 
     if (raceSet == 'a') {
-        blackLabels.push('African Americans');
-        whiteLabels.push('European Americans');
+        femaleLabels.push('Non-Entreprneur');
+        maleLabels.push('Entrepreneur');
     } else {
-        blackLabels.push('Black people');
-        whiteLabels.push('White people');
+        femaleLabels.push('Female Names');
+        maleLabels.push('Male Names');
     }
 
     API.addGlobal({
@@ -32,29 +32,17 @@ define(['managerAPI',
         //YBYB: change when copying back to the correct folder
         baseURL: './images/',
         raceSet:raceSet,
-        blackLabels:blackLabels,
-        whiteLabels:whiteLabels,
+        femaleLabels:femaleLabels,
+        maleLabels:maleLabels,
         //Select randomly what attribute words to see. 
         //Based on Axt, Feng, & Bar-Anan (2021).
         posWords : API.shuffle([
-            'Love', 'Cheer', 'Friend', 'Pleasure',
-            'Adore', 'Cheerful', 'Friendship', 'Joyful', 
-            'Smiling','Cherish', 'Excellent', 'Glad', 
-            'Joyous', 'Spectacular', 'Appealing', 'Delight', 
-            'Excitement', 'Laughing', 'Attractive','Delightful', 
-            'Fabulous', 'Glorious', 'Pleasing', 'Beautiful', 
-            'Fantastic', 'Happy', 'Lovely', 'Terrific', 
-            'Celebrate', 'Enjoy', 'Magnificent', 'Triumph'
+            'Ambitious', 'Confident', 'Innovative', 'Leading',
+            'Risk-taking'
         ]), 
         negWords : API.shuffle([
-            'Abuse', 'Grief', 'Poison', 'Sadness', 
-            'Pain', 'Despise', 'Failure', 'Nasty', 
-            'Angry', 'Detest', 'Horrible', 'Negative', 
-            'Ugly', 'Dirty', 'Gross', 'Evil', 
-            'Rotten','Annoy', 'Disaster', 'Horrific',  
-            'Scorn', 'Awful', 'Disgust', 'Hate', 
-            'Humiliate', 'Selfish', 'Tragic', 'Bothersome', 
-            'Hatred', 'Hurtful', 'Sickening', 'Yucky'
+            'Humble', 'Shy', 'Traditional', 'Following', 
+            'Cautious'
         ])
     });
 
@@ -116,7 +104,7 @@ define(['managerAPI',
     API.addSequence([
         { type: 'isTouch' }, //Use Minno's internal touch detection mechanism. 
         
-        { type: 'post', path: ['$isTouch', 'raceSet', 'blackLabels', 'whiteLabels'] },
+        { type: 'post', path: ['$isTouch', 'raceSet', 'femaleLabels', 'maleLabels'] },
 
         // apply touch only styles
         {
